@@ -12,18 +12,28 @@ public class Programacion1 {
     static int[] Precio = new int[100];
     static int[] ListaArticulo = new int[100];
     static int[] CantidarPorArticulo = new int[100];
-    static int[] Stock = new int[100]; // Añadido Defensa
-    static int[] DevolverStock = new int[100];// Añadido Defensa
+    static int[] Stock = new int[100];
+    static int[] DevolverStock = new int[100];
     static Random aleatorio = new Random();
     static Scanner leer = new Scanner(System.in);
     static int opcion, opcion1;
     static int contador;
 
+    /***
+     * Punto de entrada a la aplicación java
+     * Permite ejecutar la aplicación
+     * Genera los precios y la cantidad de ariculos
+     * usando un Random y un búcle "For"
+     * Genera un menú interactivo utilizando Switch
+     *      
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         int Devolver, listaprecios, Generador, MenuCompra, Ticket;
         for (int i = 0; i < CantidadDeArticulos; i++) {
             Precio[i + 1] = aleatorio.nextInt(1500);
-            Stock[i + 1] = aleatorio.nextInt(20); // Añadido Defensa
+            Stock[i + 1] = aleatorio.nextInt(20);
             DevolverStock[i + 1] = Stock[i + 1];
             System.out.println("El Carrito fue devuelto");
         }
@@ -40,27 +50,27 @@ public class Programacion1 {
             switch (opcion) {
                 case 1:
                     Generador = GenerarListaArticulos();
-                    break;
+                        break;
                 case 2:
                     contador++;
                     MenuCompra = MenuProductos();
-                    break;
+                        break;
                 case 3:
                     System.out.println("has gastado: " + totalprecio);
-                    break;
+                        break;
                 case 4:
                     System.out.println("┌─────────────────────────────────────────┐");
                     System.out.println("|     articulos de cada tipo comprados    |");
                     System.out.println("└─────────────────────────────────────────┘");
                     listaprecios = ListaDePrecios();
-                    break;
+                         break;
                 case 5:
                     System.out.println("Cantidad de artículos comprados: " + ArticulosPorPrecio);
-                    break;
+                         break;
                 case 6:
                     Ticket = Ticket();
                     System.exit(0);
-                    break;
+                        break;
                 case 7:
                     Devolver = DevolverCarrito();
                     break;
@@ -68,6 +78,12 @@ public class Programacion1 {
         } while (opcion != 0);
     }
 
+    /***
+     * Devolver Carrito de compra
+     * Devuelve todos los productos que contiene el carrito
+     * 
+     * @return
+     */
     public static int DevolverCarrito() {
         int Devolver = 0;
         for (int i = 0; i < CantidadDeArticulos; i++) {
@@ -76,6 +92,13 @@ public class Programacion1 {
         return Devolver;
     }
 
+    /***
+     * Generar lista de articulos
+     * Dependiendo del valor de la variable
+     * CantidadDeArticulos
+     * 
+     * @return
+     */
     public static int GenerarListaArticulos() {
         int Generador = 0;
         for (int i = 0; i < CantidadDeArticulos; i++) {
@@ -85,9 +108,15 @@ public class Programacion1 {
         return Generador;
     }
 
+    /**
+     * Menu Productos
+     * Genera un menu interactivo por consola
+     * para seleccionar que articulo comprar
+     * 
+     * @return
+     */
     public static int MenuProductos() {
         int MenuCompra = 0;
-        for (int i = 0; i <= 1; i++) {
             System.out.println("¿Que articulo desea comprar?");
             opcion1 = leer.nextInt();
             ListaArticulo[contador - 1] = opcion1;
@@ -110,11 +139,15 @@ public class Programacion1 {
             } else {
                 System.out.println("Error");
             }
-            break;
-        }
         return MenuCompra;
     }
 
+    /***
+     * Lista de Precios
+     * Genera una lista de articulos con sus precios en la consola
+     * 
+     * @return
+     */
     public static int ListaDePrecios() {
         int listaprecios = 0;
         for (int i = 0; i < contador; i++) {
@@ -123,6 +156,12 @@ public class Programacion1 {
         return listaprecios;
     }
 
+    /**
+     * Ticket
+     * Genera un ticket con información sobre la compra
+     * 
+     * @return
+     */
     public static int Ticket() {
         double totalprecioIVA = totalprecio * 0.22 + totalprecio;
         Date fechaActual = new Date();
@@ -131,8 +170,6 @@ public class Programacion1 {
         int Ticket = 0;
         int atendido;
         atendido = aleatorio.nextInt(2);
-        int min = 100000;
-        int max = 999999;
         int Numero = aleatorio.nextInt(999999 - 100000) + 100000;
         System.out.println("              Super LauLex              ");
         System.out.println("e-Ticket                                   ");
